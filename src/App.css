@@ -18,6 +18,22 @@
   font-size: large;
 }
 
+.suggestion-list {
+  margin-top: 25px;
+}
+
+.suggestion {
+  padding: 8px;
+  background: #EAEAEA;
+  float: left;
+  margin: 1%;
+  width: 31%;
+  box-sizing: border-box;
+}
+.suggestion div {
+  float:right;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
