@@ -3,3 +3,42 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.restaurant {
+  padding:5px;
+  border:1px solid #e8e8e8;
+  background-color: white;
+  border-radius: 6px;
+  float:left;
+  margin:5px;
+  cursor: pointer;
+  /*box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);*/
+}
+
+.rating {
+  padding:5px;
+  color:white;
+  font-weight: bold;
+  border-radius: 5px;
+  display:inline-block;
+  margin-left: 3px;
+}
+
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: 300ms;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: 300ms;
+}

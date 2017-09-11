@@ -18,7 +18,7 @@ class Suggestion extends React.Component {
 
 	handleDownVoteClick = () => {
 		this.setState ({
-			downVotes: this.state.downVotes += 1
+			downVotes: this.state.downVotes -= 1
 		})
 	}
 
