@@ -58,6 +58,8 @@ class App extends Component {
             "Accept":"application/json"
           }
         })
+    .then(res => res.json())
+    .then(json => console.log(json))
 
     this.setState({
       suggestions: [...this.state.suggestions, obj]

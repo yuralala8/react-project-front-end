@@ -7,7 +7,6 @@ class SuggestionList extends React.Component {
 
 
 	render(){
-		console.log(this.props.suggestions)
 		let suggs = this.props.suggestions.map((suggestion, index) => <Suggestion key={index} suggestion={suggestion} />)
 		return(
 			<div className="suggestion-list">
