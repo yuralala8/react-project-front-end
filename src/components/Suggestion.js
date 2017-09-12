@@ -16,7 +16,8 @@ class Suggestion extends React.Component {
 	}
 
 	render(){
-		console.log("test", this.props.currentUser, this.props.suggestion['user_id'])
+		console.log("test", localStorage.getItem("id"), this.props.suggestion['user_id'])
+
 		let suggName = this.props.suggestion["res_name"]
 		let suggAddress = this.props.suggestion["res_location"]
 		let suggCuisine = this.props.suggestion["res_cuisines"]
@@ -28,7 +29,7 @@ class Suggestion extends React.Component {
 		// let rating = this.state.restaurant.user_rating.aggregate_rating
 		return (
 			<div className="suggestion">
-				{this.props.currentUser.user.id === this.props.suggestion['user_id'] ? <p className="delete" onClick={this.handleDelete}>X</p> : null}
+				{localStorage.getItem("id") == this.props.suggestion['user_id'] ? <p className="delete" onClick={this.handleDelete}>X</p> : null}
 
 				<span className="rating">{suggRating}</span>
 

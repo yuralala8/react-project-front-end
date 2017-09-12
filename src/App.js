@@ -54,10 +54,15 @@ class App extends Component {
         this.setState({
           currentUser: user,
           isLoggedIn: true
-        }, localStorage.setItem('jwt', user.jwt))
+        }, this.setLocalstorage(user))
         
       })
 
+  }
+
+  setLocalstorage = (user)=>{
+    localStorage.setItem('jwt', user.jwt)
+    localStorage.setItem('id', user.user.id)
   }
 
      signUpUser = (userParams) => {

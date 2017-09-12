@@ -14,7 +14,7 @@ const Headers = (props) => {
 					to="/signup"
 					exact
 				>Sign Up</NavLink>
-				{props.isLoggedIn ? <NavLink className="item" to="/login" onClick={() => localStorage.removeItem('jwt')} exact>Logout</NavLink> : <NavLink className="item" to="/login" exact>Login</NavLink>}
+				{props.isLoggedIn ? <NavLink className="item" to="/login" onClick={() => localStorage.clear()} exact>Logout</NavLink> : <NavLink className="item" to="/login" exact>Login</NavLink>}
 
 			</div>
 
