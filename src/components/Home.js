@@ -9,7 +9,8 @@ const Home = (props) => {
 		<div>
 	 <Search getRestaurantData = {props.getRestaurantData}/>
       <RestaurantList handleClick = {props.handleClick} restaurants={props.restaurants}/>
-      <SuggestionList suggestions = {props.suggestions} /> 
+      <SuggestionList suggestions = {props.suggestions} voteChange={props.voteChange} currentUser={props.currentUser} deleteSugg={props.deleteSugg}/>
+
       </div>
       )
 

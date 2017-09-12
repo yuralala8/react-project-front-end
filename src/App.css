@@ -31,9 +31,7 @@
   width: 31%;
   box-sizing: border-box;
 }
-.suggestion div {
-  float:right;
-}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

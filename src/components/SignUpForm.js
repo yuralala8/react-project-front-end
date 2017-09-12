@@ -47,7 +47,7 @@ class SignUpForm extends React.Component {
         </div>
         <div className="form-wrapper">
             <form onSubmit={this.handleSubmit} className="user-form">
-              <h1>Sign In</h1>
+              <h1>Sign Up</h1>
               <div className="field">
                 <div className="ui left fluid icon input">
                   <i className="user icon"></i>
@@ -60,7 +60,7 @@ class SignUpForm extends React.Component {
                   <input type="password" placeholder="Password" onChange={this.handlePasswordChange} value={this.state.passwordInput} />
                 </div>
               </div>
-              <input className="ui fluid large submit button" type="submit" value="Sign In"/>
+              <input className="ui fluid large submit button" type="submit" value="Sign Up"/>
             </form>
             <div className="ui message login-msg">
               Already Registered? <Link to={`/login`}>Log In</Link>

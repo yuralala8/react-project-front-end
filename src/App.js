@@ -14,10 +14,39 @@ class App extends Component {
     this.state = {
       suggestions: [],
       restaurants: [],
-      currentUser: {},
+      currentUser: {user:{id:null}},
       isLoggedIn: false
     }
    }
+
+      componentDidMount = () => {
+        const jwtToken = localStorage.getItem("jwt")
+         fetch('http://localhost:3000/api/v1/suggestions',{
+          headers: {
+            "Authorization": `Bearer ${jwtToken}`,
+            "Content-Type":"application/json",
+            "Accept":"application/json"
+          }
+        })
+         .then(resp => resp.json())
+         .then(json => this.setState({ suggestions: json }))
+
+        // if (jwtToken) {
+        //   fetch('http://localhost:3000/api/v1/me',{
+        //   headers: {
+        //     "Authorization": `Bearer ${jwtToken}`,
+        //     "Content-Type":"application/json",
+        //     "Accept":"application/json"
+        //   }
+        // })
+        // .then(resp => resp.json())
+        // .then(json => this.setState({
+        //   currentUser: json,
+        //   isLoggedIn: true
+        // }))
+
+        // }
+      }
 
      loginUser = (userParams) => {
     Auth.login(userParams)
@@ -27,7 +56,6 @@ class App extends Component {
           isLoggedIn: true
         }, localStorage.setItem('jwt', user.jwt))
         
-        console.log(this.state, "logged in")
       })
 
   }
@@ -45,7 +73,16 @@ class App extends Component {
   }
     handleClick = (obj) => {
       const jwtToken = localStorage.getItem("jwt")
-      const suggJSON = JSON.stringify({res_id: obj.restaurant.id})
+      const suggJSON = JSON.stringify({
+        res_id: obj.restaurant.id,
+        res_name: obj.restaurant.name,
+        res_cuisines: obj.restaurant.cuisines,
+        res_location: obj.restaurant.location["address"],
+        res_menu_url: obj.restaurant["menu_url"],
+        res_image: obj.restaurant["featured_image"],
+        res_url: obj.restaurant.url,
+        res_user_rating: obj.restaurant["user_rating"]["aggregate_rating"]
+      })
     
     console.log(suggJSON)
    
@@ -59,11 +96,11 @@ class App extends Component {
           }
         })
     .then(res => res.json())
-    .then(json => console.log(json))
+    .then(json => this.setState({ suggestions: json }))
 
-    this.setState({
-      suggestions: [...this.state.suggestions, obj]
-    })
+  //   this.setState({
+  //     suggestions: [...this.state.suggestions, obj]
+  //   })
   }
 
     getRestaurantData = (restaurants) => {
@@ -71,6 +108,41 @@ class App extends Component {
         restaurants: restaurants.restaurants
       })
     }
+
+  voteChange = (suggestion, voteValue) => {
+  const jwtToken = localStorage.getItem("jwt")
+
+         fetch(`http://localhost:3000/api/v1/suggestions/${suggestion.id}`,{
+         method: 'post',
+         body: JSON.stringify({"vote":voteValue}),
+          headers: {
+            "Authorization": `Bearer ${jwtToken}`,
+            "Content-Type":"application/json",
+            "Accept":"application/json"
+          }
+        })
+         .then(resp => resp.json())
+         // .then(json => console.log(json))
+         .then(json => this.setState({ suggestions: json }))
+  }
+
+  deleteSugg = (suggestion) => {
+    const jwtToken = localStorage.getItem("jwt")
+
+       fetch(`http://localhost:3000/api/v1/suggestions/${suggestion.id}`,{
+       method: 'delete',
+        headers: {
+          "Authorization": `Bearer ${jwtToken}`,
+          "Content-Type":"application/json",
+          "Accept":"application/json"
+        }
+      })
+       .then(resp => resp.json())
+       // .then(json => console.log(json))
+       .then(json => this.setState({ suggestions: json }))
+  }
+
+
 
 
   render() {
@@ -80,7 +152,7 @@ class App extends Component {
       <Headers isLoggedIn={localStorage.getItem('jwt')}/>
       <Route path="/login" render={() => <LoginForm onLogin={this.loginUser}/> }/>
        { localStorage.getItem('jwt') ? <Redirect to= "/search"/> : <Redirect to= "/login"/> }
-      <Route path="/search" render={() => <Home getRestaurantData={this.getRestaurantData} handleClick={this.handleClick} suggestions={this.state.suggestions} restaurants={this.state.restaurants} /> }/>
+      <Route path="/search" render={() => <Home getRestaurantData={this.getRestaurantData} handleClick={this.handleClick} currentUser={this.state.currentUser} suggestions={this.state.suggestions} restaurants={this.state.restaurants}  voteChange={this.voteChange} deleteSugg={this.deleteSugg}/> }/>
       <Route path="/signup" render={() => <SignUpForm onSignUp={this.signUpUser} /> }/>
 
       </div>

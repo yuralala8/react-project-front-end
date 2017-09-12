@@ -7,6 +7,7 @@ body {
 .header {
   box-shadow: none;
   border-radius: 0px;
+  margin-bottom:0;
 }
 
 .header .item {
@@ -129,6 +130,39 @@ body {
 }
 .ui.message.login-msg a:hover {
   color:#fd7c33
+}
+
+.search-wrapper {
+    padding:80px;
+    color:white;
+    background: #d9a7c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #fffcdc, #d9a7c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #fffcdc, #d9a7c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.sugg-image {
+  height: 100px;
+  width: 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: left;
+}
+
+.sugg-info {
+  width: 68%;
+  margin-left: 2%;
+  float: right;
+}
+
+.suggestion {
+  position: relative;
+
+}
+
+.suggestion .rating {
+  position: absolute;
+  right: 0;
 }
 
 .example-enter {

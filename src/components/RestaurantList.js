@@ -28,7 +28,7 @@ class RestaurantList extends React.Component {
 
 
 	render(){
-		console.log(this.props.restaurants)
+	
 		let searchResults = this.props.restaurants.map((restaurant, index) => <Restaurant key={index} restaurant = {restaurant} handleClick={this.props.handleClick}/>)
 		return (
 			<div className="restaurant-list">

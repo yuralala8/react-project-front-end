@@ -16,8 +16,6 @@ class Search extends React.Component {
 			searchTerm: this.searchTerm.value,
 			address: this.address.value,
 		})
-
-		console.log(this.state)
 	}
 
 
@@ -36,7 +34,7 @@ class Search extends React.Component {
 	render() {
 
 		return (
-			<div>
+			<div className="search-wrapper">
 				<form onSubmit={this.handleClick}>
 				Looking for <input ref={node => this.searchTerm = node} type="text" value={this.state.searchTerm} onChange={this.handleChange} required/>
 				Nearby <input ref={node => this.address = node} type="text" value={this.state.address} onChange={this.handleChange} required/>
