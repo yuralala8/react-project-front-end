@@ -4,6 +4,15 @@ body {
   font-family: sans-serif;
 }
 
+.header {
+  box-shadow: none;
+  border-radius: 0px;
+}
+
+.header .item {
+  margin-bottom: 0px;
+}
+
 .restaurant {
   padding:5px;
   border:1px solid #e8e8e8;
@@ -24,6 +33,103 @@ body {
   margin-left: 3px;
 }
 
+.form-background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    opacity: 0.97;
+    transform: translateX(-50%) translateY(-50%);
+    background: #FF512F;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #DD2476, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #DD2476, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.form-background-images {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -101;
+  transform: translateX(-50%) translateY(-50%);
+  background-image: url(https://i.pinimg.com/originals/fb/93/b3/fb93b358364d260f60752e2d96f8c05f.gif);
+
+}
+
+.form-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.user-form {
+  width: 400px;
+  margin: 0 auto;
+  background: rgba(28, 10, 10, 0.2);
+  border-radius: 8px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+.user-form h1 {
+  color:white;
+}
+
+.user-form .ui.fluid.button {
+  background-color: #fda133;
+  color:white;
+  font-size:1.6em;
+}
+
+.user-form .ui.fluid.button:hover {
+  background-color: #fd7c33;
+}
+
+.user-form .ui.input {
+  color:white;
+  margin-bottom:12px;
+  font-size:1.8em;
+}
+.user-form .ui.input input[type="text"], .user-form .ui.input input[type="password"] {
+  background: transparent;
+  color:white;
+  border:white solid 1px;
+}
+
+.user-form .ui.input input[type="text"]:focus, .user-form .ui.input input[type="password"]:focus {
+  color:white;
+}
+.user-form .ui.input input::placeholder {
+  color: #e0e0e0;
+}
+
+.user-form .ui.input input:focus::placeholder {
+  color: #fff;
+}
+.ui.message.login-msg  {
+  width: 400px;
+  font-size:1em;
+  color:white;
+  margin: 10px auto;
+  background: rgba(28, 10, 10, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow :none;
+}
+
+.ui.message.login-msg a {
+  color:#fda133;
+}
+.ui.message.login-msg a:hover {
+  color:#fd7c33
+}
 
 .example-enter {
   opacity: 0.01;
