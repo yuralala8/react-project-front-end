@@ -18,19 +18,7 @@
   font-size: large;
 }
 
-.suggestion-list {
-  margin-top: 25px;
-  clear: both;
-}
 
-.suggestion {
-  padding: 8px;
-  background: #EAEAEA;
-  float: left;
-  margin: 1%;
-  width: 31%;
-  box-sizing: border-box;
-}
 
 
 @keyframes App-logo-spin {

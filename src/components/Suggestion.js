@@ -43,13 +43,13 @@ class Suggestion extends React.Component {
 						<a href={suggUrl} target="blank_">More Details</a>
 						<a href={suggMenuUrl} target="blank_">View Menu</a>
 					</div>
-					<div>
+					<div className="sugg-info-bottom">
 						<p>Suggested by: {this.props.suggestion.username}</p>
-						<div>
-							<p>{this.props.suggestion["vote_up"]}</p>
+						<div className="vote vote-up">
+							{this.props.suggestion["vote_up"]}
 							<button data-vote="up" onClick={this.handleVoteClick}>Up</button>
 						</div>
-						<div> <p>{this.props.suggestion["vote_down"]}</p>
+						<div className="vote vote-up">{this.props.suggestion["vote_down"]}
 							<button data-vote="down" onClick={this.handleVoteClick}>Down</button>
 						</div>	
 					</div>

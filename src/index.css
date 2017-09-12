@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #f1f1f1;
 }
 
 .header {
@@ -153,6 +154,53 @@ body {
   width: 68%;
   margin-left: 2%;
   float: right;
+  text-align:left;
+}
+
+.sugg-info h2 {
+  margin: 3px auto;
+}
+.sugg-info h4 {
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  font-size:.85em;
+  color:#a7a7a7;
+}
+.sugg-info p {
+  margin: 3px auto;
+}
+
+.sugg-info-bottom {
+  border-top:1px solid #a3a3a3;
+  padding-top:4px;
+}
+
+.sugg-info-bottom p {
+  margin: 3px auto;
+  margin-right: 2%;
+  width:50%;
+  display:inline-block;
+  font-size:.8em;
+}
+
+.sugg-info-bottom div {
+  display:inline-block;
+  margin-right: 1%;
+  font-size:.8em;
+}
+
+.suggestion-list {
+  margin-top: 25px;
+  clear: both;
+}
+
+.suggestion {
+  padding: 8px;
+  background: #fff;
+  float: left;
+  margin: 1%;
+  width: 31%;
+  box-sizing: border-box;
 }
 
 .suggestion {
@@ -163,6 +211,7 @@ body {
 .suggestion .rating {
   position: absolute;
   right: 0;
+  background: green;
 }
 
 .example-enter {

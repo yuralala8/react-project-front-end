@@ -6,6 +6,7 @@ import LoginForm from './components/LoginForm'
 import { Route, Redirect } from 'react-router-dom'
 import SignUpForm from './components/SignUpForm'
 import Headers from './components/Headers'
+import SuggestionList from './components/SuggestionList'
 
 class App extends Component {
    constructor(){
