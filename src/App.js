@@ -17,8 +17,8 @@ class App extends Component {
       suggestions: [],
       restaurants: [],
       currentUser: {user:{id:null}},
-      isLoggedIn: false
-
+      isLoggedIn: false,
+      loading: true
     }
    }
 
@@ -26,7 +26,7 @@ class App extends Component {
     this.interval = setInterval(this.fetchVotes, 2000);
   }
   
-      componentDidMount = () => {
+      getSomeSuggestions = () => {
         const jwtToken = localStorage.getItem("jwt")
          fetch('http://localhost:3000/api/v1/suggestions',{
           headers: {
@@ -36,7 +36,7 @@ class App extends Component {
           }
         })
          .then(resp => resp.json())
-         .then(json => this.setState({ suggestions: json }))
+         .then(json => this.setState({ suggestions: json, loading: false}))
 
        this.startInterval()
       }
@@ -48,16 +48,14 @@ class App extends Component {
     this.cleanUpInterval()
   }
 
-       
 
-     loginUser = (userParams) => {
+  loginUser = (userParams) => {
     Auth.login(userParams)
       .then(user => {
         this.setState({
           currentUser: user,
           isLoggedIn: true
-        }, this.setLocalstorage(user))
-        
+        }, this.setLocalstorage(user)) 
       })
 
   }
@@ -106,9 +104,7 @@ class App extends Component {
     .then(res => res.json())
     .then(json => this.setState({ suggestions: json }))
 
-  //   this.setState({
-  //     suggestions: [...this.state.suggestions, obj]
-  //   })
+
   }
 
     getRestaurantData = (restaurants) => {
@@ -153,10 +149,6 @@ class App extends Component {
    }
 
 
-  componentWillMount(){
-    this.fetchVotes()
-  }
-
 
   deleteSugg = (suggestion) => {
     const jwtToken = localStorage.getItem("jwt")
@@ -175,21 +167,20 @@ class App extends Component {
   }
 
 
+
   render() {
-
-
+    localStorage.getItem("jwt")? this.getSomeSuggestions() : null
     return (
       <div className="App">
       <Headers isLoggedIn={localStorage.getItem('jwt')}/>
       <Route path="/login" render={() => <LoginForm onLogin={this.loginUser}/> }/>
-       { localStorage.getItem('jwt') ? <Redirect to= "/room"/> : <Redirect to= "/login"/> }
       <Route path="/search/:id" render={(data) => <Home roomKey={data.match.params.id} getRestaurantData={this.getRestaurantData} handleClick={this.handleClick} currentUser={this.state.currentUser} suggestions={this.state.suggestions} restaurants={this.state.restaurants}  voteChange={this.voteChange} deleteSugg={this.deleteSugg}/> }/>
       <Route path="/signup" render={() => <SignUpForm onSignUp={this.signUpUser} /> }/>
-      <Route path="/room" render={() => <RoomPage suggestions={this.state.suggestions} /> } />
-
+      <Route path="/room" render={() => <RoomPage loading={this.state.loading} suggestions={this.state.suggestions} /> } />
+       { (localStorage.getItem('jwt') && !this.state.loading) ? <Redirect to= "/room"/> : <Redirect to= "/login"/> }
       </div>
     );
   }
-}
 
+}
 export default App;
