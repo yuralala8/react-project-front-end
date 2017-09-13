@@ -35,10 +35,11 @@ class Search extends React.Component {
 
 		return (
 			<div className="search-wrapper">
-				<form onSubmit={this.handleClick}>
-				Looking for <input ref={node => this.searchTerm = node} type="text" value={this.state.searchTerm} onChange={this.handleChange} required/>
-				Nearby <input ref={node => this.address = node} type="text" value={this.state.address} onChange={this.handleChange} required/>
-				<input type="submit" value="Search Restaurants" />
+				<form onSubmit={this.handleClick} className="search-form">
+					<i className="search icon"></i>
+					<label>Looking for</label><input ref={node => this.searchTerm = node} type="text" value={this.state.searchTerm} onChange={this.handleChange} required/>
+					<label>Nearby</label><input ref={node => this.address = node} type="text" value={this.state.address} onChange={this.handleChange} required/>
+				<input className="ui button" type="submit" value="Search Restaurants" />
 				</form>
 			</div>
 		)
