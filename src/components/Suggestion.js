@@ -40,8 +40,8 @@ class Suggestion extends React.Component {
 					<h2><a href={suggUrl} target="blank_"> {suggName}</a></h2>
 					<p>{suggAddress}</p>
 					<div className="sugg-links">
-						<a href={suggUrl} target="blank_">More Details</a>
-						<a href={suggMenuUrl} target="blank_">View Menu</a>
+						<a href={suggUrl} target="blank_">More Details</a> | <a href={suggMenuUrl} target="blank_">View Menu</a>
+
 					</div>
 					<div className="sugg-info-bottom">
 						<p>Suggested by: {this.props.suggestion.username}</p>

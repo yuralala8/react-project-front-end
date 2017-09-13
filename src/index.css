@@ -11,6 +11,7 @@ body {
 
 h1, h2, h3, h4, h5 {
     font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
 }
 
 .ui.menu.header {
@@ -156,7 +157,7 @@ h1, h2, h3, h4, h5 {
 
 .search-top {
   padding:80px;
-  padding-bottom:70px;
+  padding-bottom:30px;
   background: #d9a7c7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #fffcdc, #d9a7c7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #fffcdc, #d9a7c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -266,6 +267,10 @@ h1, h2, h3, h4, h5 {
   color:#751E71;
 }
 
+.suggestion-list h2 a:hover, .suggestion-list a:hover  {
+  color:#b762b3;
+}
+
 .all-suggs > span {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -276,6 +281,7 @@ h1, h2, h3, h4, h5 {
 
 .suggestion {
   padding: 8px;
+  padding-top: 17px;
   margin-bottom: 10px;
   background: #fff;
   box-sizing: border-box;
@@ -300,7 +306,6 @@ h1, h2, h3, h4, h5 {
 }
 .sugg-links a {
   margin:4px auto;
-  margin-right:5px;
   display:inline-block;
 }
 
@@ -343,7 +348,7 @@ p.delete {
   position: absolute;
   cursor: pointer;
   color: gray;
-  right: 50px;
+  right: 48px;
   top: 6px;
   font-size: 1.2em;
 }
