@@ -13,12 +13,17 @@ export default class RoomPage extends React.Component {
 }
 
 	getRoomKeys = () => {
+		
+
 		const roomKeys = this.props.suggestions.map(sugg => sugg["room_id"])
 		 return roomKeys.filter((x, i, array) => array.indexOf(x) == i)
 	}
 
 
+
+
 	render(){
+
 
 		return (
 			<div>
