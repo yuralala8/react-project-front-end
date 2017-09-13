@@ -1,12 +1,16 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background: #f1f1f1;
   background: #d9a7c7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #fffcdc, #d9a7c7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #fffcdc, #d9a7c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
 }
 
 .ui.menu.header {
@@ -215,7 +219,7 @@ body {
 .sugg-info h4 {
   margin-bottom: 3px;
   text-transform: uppercase;
-  font-size:.85em;
+  font-size:.8em;
   color:#a7a7a7;
 }
 .sugg-info p {
@@ -248,8 +252,18 @@ body {
   min-height: 700px;
 }
 
+
 .suggestion-list > h2 {
   padding: 15px 0;
+  color:#751E71;
+}
+
+.suggestion-list .suggestion h2 {
+  color:#751E71;
+  font-size: 1.4em
+}
+.suggestion-list h2 a, .suggestion-list a  {
+  color:#751E71;
 }
 
 .all-suggs > span {
@@ -278,7 +292,7 @@ body {
   top:3px;
   padding: 3px 7px;
   right: 4px;
-  background: green;
+  background: #d9a8c7;
 }
 
 .sugg-links {
