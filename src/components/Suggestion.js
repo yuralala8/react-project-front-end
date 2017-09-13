@@ -3,14 +3,16 @@ import React from 'react'
 class Suggestion extends React.Component {
 	constructor(props){
 		super(props)
-
+	
 	}
+
 
 	handleVoteClick = (event) => {
 		const voteValue = event.target.dataset.vote
 		this.props.voteChange(this.props.suggestion, voteValue)
 	}
 
+	
 	handleDelete = () => {
 		this.props.deleteSugg(this.props.suggestion)
 	}

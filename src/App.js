@@ -22,6 +22,10 @@ class App extends Component {
     }
    }
 
+ startInterval = () => {
+    this.interval = setInterval(this.fetchVotes, 2000);
+  }
+  
       componentDidMount = () => {
         const jwtToken = localStorage.getItem("jwt")
          fetch('http://localhost:3000/api/v1/suggestions',{
@@ -34,7 +38,17 @@ class App extends Component {
          .then(resp => resp.json())
          .then(json => this.setState({ suggestions: json }))
 
+       this.startInterval()
       }
+
+
+  cleanUpInterval = () => clearInterval(this.interval);
+
+  componentWillUnmount(){
+    this.cleanUpInterval()
+  }
+
+       
 
      loginUser = (userParams) => {
     Auth.login(userParams)
@@ -105,6 +119,7 @@ class App extends Component {
 
     }
 
+
   voteChange = (suggestion, voteValue) => {
   const jwtToken = localStorage.getItem("jwt")
 
@@ -120,7 +135,28 @@ class App extends Component {
          .then(resp => resp.json())
          // .then(json => console.log(json))
          .then(json => this.setState({ suggestions: json }))
+       }
+
+
+  fetchVotes = () => {
+    
+        const jwtToken = localStorage.getItem("jwt")
+         fetch('http://localhost:3000/api/v1/suggestions',{
+          headers: {
+            "Authorization": `Bearer ${jwtToken}`,
+            "Content-Type":"application/json",
+            "Accept":"application/json"
+          }
+        })
+         .then(resp => resp.json())
+         .then(json => this.setState({ suggestions: json }))
+   }
+
+
+  componentWillMount(){
+    this.fetchVotes()
   }
+
 
   deleteSugg = (suggestion) => {
     const jwtToken = localStorage.getItem("jwt")
