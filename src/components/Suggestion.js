@@ -35,11 +35,11 @@ class Suggestion extends React.Component {
 
 				<div className="sugg-image" style={imgStyle}> </div>
 
-				<div className="sugg-info"> 
+				<div className="sugg-info">
 					<h4>{suggCuisine}</h4>
 					<h2><a href={suggUrl} target="blank_"> {suggName}</a></h2>
 					<p>{suggAddress}</p>
-					<div> 
+					<div className="sugg-links">
 						<a href={suggUrl} target="blank_">More Details</a>
 						<a href={suggMenuUrl} target="blank_">View Menu</a>
 					</div>
@@ -47,11 +47,11 @@ class Suggestion extends React.Component {
 						<p>Suggested by: {this.props.suggestion.username}</p>
 						<div className="vote vote-up">
 							{this.props.suggestion["vote_up"]}
-							<button data-vote="up" onClick={this.handleVoteClick}>Up</button>
+							<button data-vote="up" onClick={this.handleVoteClick}></button>
 						</div>
-						<div className="vote vote-up">{this.props.suggestion["vote_down"]}
-							<button data-vote="down" onClick={this.handleVoteClick}>Down</button>
-						</div>	
+						<div className="vote vote-down">{this.props.suggestion["vote_down"]}
+							<button data-vote="down" onClick={this.handleVoteClick}></button>
+						</div>
 					</div>
 				</div>
 

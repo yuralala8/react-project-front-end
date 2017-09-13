@@ -7,8 +7,10 @@ const Home = (props) => {
 
 	return (
 		<div>
-	 <Search getRestaurantData = {props.getRestaurantData}/>
-      <RestaurantList handleClick = {props.handleClick} restaurants={props.restaurants}/>
+			<div className="search-top">
+				<Search getRestaurantData = {props.getRestaurantData}/>
+				<RestaurantList handleClick = {props.handleClick} restaurants={props.restaurants}/>
+			</div>
       <SuggestionList suggestions = {props.suggestions} voteChange={props.voteChange} currentUser={props.currentUser} deleteSugg={props.deleteSugg}/>
 
       </div>
