@@ -4,13 +4,12 @@ import Search from './Search'
 import SuggestionList from './SuggestionList'
 
 const Home = (props) => {
-
+	console.log(props.roomKey)
 	return (
 		<div>
 	 <Search getRestaurantData = {props.getRestaurantData}/>
-      <RestaurantList handleClick = {props.handleClick} restaurants={props.restaurants}/>
-      <SuggestionList suggestions = {props.suggestions} voteChange={props.voteChange} currentUser={props.currentUser} deleteSugg={props.deleteSugg}/>
-
+      <RestaurantList roomKey={props.roomKey} handleClick = {props.handleClick} restaurants={props.restaurants}/>
+      <SuggestionList roomKey={props.roomKey} suggestions = {props.suggestions} voteChange={props.voteChange} currentUser={props.currentUser} deleteSugg={props.deleteSugg}/>
       </div>
       )
 

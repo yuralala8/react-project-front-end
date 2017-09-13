@@ -210,8 +210,17 @@ body {
 
 .suggestion .rating {
   position: absolute;
-  right: 0;
+  right: 5px;
   background: green;
+}
+
+.room {
+  padding: 8px;
+  background: #fff;
+  float: left;
+  margin: 1%;
+  width: 31%;
+  box-sizing: border-box;
 }
 
 .example-enter {

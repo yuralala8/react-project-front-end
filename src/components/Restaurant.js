@@ -11,7 +11,7 @@ class Restaurant extends React.Component {
 	}
 
 	restaurantClick = () => {
-		this.props.handleClick(this.props.restaurant)
+		this.props.handleClick(this.props.restaurant, this.props.roomKey)
 	}
 
 	render(){

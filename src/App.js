@@ -7,6 +7,7 @@ import { Route, Redirect } from 'react-router-dom'
 import SignUpForm from './components/SignUpForm'
 import Headers from './components/Headers'
 import SuggestionList from './components/SuggestionList'
+import RoomPage from './components/RoomPage'
 
 class App extends Component {
    constructor(){
@@ -17,6 +18,7 @@ class App extends Component {
       restaurants: [],
       currentUser: {user:{id:null}},
       isLoggedIn: false
+
     }
    }
 
@@ -32,21 +34,6 @@ class App extends Component {
          .then(resp => resp.json())
          .then(json => this.setState({ suggestions: json }))
 
-        // if (jwtToken) {
-        //   fetch('http://localhost:3000/api/v1/me',{
-        //   headers: {
-        //     "Authorization": `Bearer ${jwtToken}`,
-        //     "Content-Type":"application/json",
-        //     "Accept":"application/json"
-        //   }
-        // })
-        // .then(resp => resp.json())
-        // .then(json => this.setState({
-        //   currentUser: json,
-        //   isLoggedIn: true
-        // }))
-
-        // }
       }
 
      loginUser = (userParams) => {
@@ -77,7 +64,7 @@ class App extends Component {
         console.log(this.state, "signed up, logged in")
       })
   }
-    handleClick = (obj) => {
+    handleClick = (obj, roomKey) => {
       const jwtToken = localStorage.getItem("jwt")
       const suggJSON = JSON.stringify({
         res_id: obj.restaurant.id,
@@ -87,7 +74,8 @@ class App extends Component {
         res_menu_url: obj.restaurant["menu_url"],
         res_image: obj.restaurant["featured_image"],
         res_url: obj.restaurant.url,
-        res_user_rating: obj.restaurant["user_rating"]["aggregate_rating"]
+        res_user_rating: obj.restaurant["user_rating"]["aggregate_rating"],
+        room_id: roomKey
       })
     
     console.log(suggJSON)
@@ -110,9 +98,11 @@ class App extends Component {
   }
 
     getRestaurantData = (restaurants) => {
+      console.log(restaurants)
       this.setState({
         restaurants: restaurants.restaurants
       })
+
     }
 
   voteChange = (suggestion, voteValue) => {
@@ -149,17 +139,17 @@ class App extends Component {
   }
 
 
-
-
   render() {
+
 
     return (
       <div className="App">
       <Headers isLoggedIn={localStorage.getItem('jwt')}/>
       <Route path="/login" render={() => <LoginForm onLogin={this.loginUser}/> }/>
-       { localStorage.getItem('jwt') ? <Redirect to= "/search"/> : <Redirect to= "/login"/> }
-      <Route path="/search" render={() => <Home getRestaurantData={this.getRestaurantData} handleClick={this.handleClick} currentUser={this.state.currentUser} suggestions={this.state.suggestions} restaurants={this.state.restaurants}  voteChange={this.voteChange} deleteSugg={this.deleteSugg}/> }/>
+       { localStorage.getItem('jwt') ? <Redirect to= "/room"/> : <Redirect to= "/login"/> }
+      <Route path="/search/:id" render={(data) => <Home roomKey={data.match.params.id} getRestaurantData={this.getRestaurantData} handleClick={this.handleClick} currentUser={this.state.currentUser} suggestions={this.state.suggestions} restaurants={this.state.restaurants}  voteChange={this.voteChange} deleteSugg={this.deleteSugg}/> }/>
       <Route path="/signup" render={() => <SignUpForm onSignUp={this.signUpUser} /> }/>
+      <Route path="/room" render={() => <RoomPage suggestions={this.state.suggestions} /> } />
 
       </div>
     );
