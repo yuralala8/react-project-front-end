@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Button, Popup, Grid } from 'semantic-ui-react'
+import { Button, Popup, Grid } from 'semantic-ui-react'
 
 class Restaurant extends React.Component {
 	constructor(props){
@@ -18,7 +18,6 @@ class Restaurant extends React.Component {
 
 		let restaurantName = this.props.restaurant.restaurant.name
 		let restaurantAddress = this.props.restaurant.restaurant.location.address
-		let restaurantCity = this.props.restaurant.restaurant.location.city
 		let restaurantRating = this.props.restaurant.restaurant['user_rating']['aggregate_rating']
 		let restaurantColor = this.props.restaurant.restaurant['user_rating']['rating_color']
 		let styles = {

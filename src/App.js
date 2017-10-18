@@ -6,7 +6,6 @@ import LoginForm from './components/LoginForm'
 import { Route, Redirect } from 'react-router-dom'
 import SignUpForm from './components/SignUpForm'
 import Headers from './components/Headers'
-import SuggestionList from './components/SuggestionList'
 import RoomPage from './components/RoomPage'
 
 class App extends Component {
@@ -22,10 +21,19 @@ class App extends Component {
     }
    }
 
+   componentDidMount(){
+     this.getSomeSuggestions()
+   }
+
+   componentWillUnmount(){
+     this.cleanUpInterval()
+   }
+
+
  startInterval = () => {
     this.interval = setInterval(this.fetchVotes, 2000);
   }
-  
+
       getSomeSuggestions = () => {
         const jwtToken = localStorage.getItem("jwt")
          fetch('http://localhost:3000/api/v1/suggestions',{
@@ -44,10 +52,6 @@ class App extends Component {
 
   cleanUpInterval = () => clearInterval(this.interval);
 
-  componentWillUnmount(){
-    this.cleanUpInterval()
-  }
-
 
   loginUser = (userParams) => {
     Auth.login(userParams)
@@ -55,7 +59,7 @@ class App extends Component {
         this.setState({
           currentUser: user,
           isLoggedIn: true
-        }, this.setLocalstorage(user)) 
+        }, this.setLocalstorage(user))
       })
 
   }
@@ -73,7 +77,6 @@ class App extends Component {
           currentUser: user,
           isLoggedIn: true
         }, localStorage.setItem('jwt', user.jwt))
-        console.log(this.state, "signed up, logged in")
       })
   }
     handleClick = (obj, roomKey) => {
@@ -89,9 +92,9 @@ class App extends Component {
         res_user_rating: obj.restaurant["user_rating"]["aggregate_rating"],
         room_id: roomKey
       })
-    
+
     console.log(suggJSON)
-   
+
     fetch('http://localhost:3000/api/v1/suggestions',{
           method: 'post',
           body: suggJSON,
@@ -108,7 +111,6 @@ class App extends Component {
   }
 
     getRestaurantData = (restaurants) => {
-      console.log(restaurants)
       this.setState({
         restaurants: restaurants.restaurants
       })
@@ -135,7 +137,7 @@ class App extends Component {
 
 
   fetchVotes = () => {
-    
+
         const jwtToken = localStorage.getItem("jwt")
          fetch('http://localhost:3000/api/v1/suggestions',{
           headers: {
@@ -145,7 +147,9 @@ class App extends Component {
           }
         })
          .then(resp => resp.json())
-         .then(json => this.setState({ suggestions: json }))
+         .then(json => {
+           this.setState({ suggestions: json })
+         })
    }
 
 
@@ -169,15 +173,15 @@ class App extends Component {
 
 
   render() {
-    localStorage.getItem("jwt")? this.getSomeSuggestions() : null
+
     return (
       <div className="App">
-      <Headers isLoggedIn={localStorage.getItem('jwt')}/>
-      <Route path="/login" render={() => <LoginForm onLogin={this.loginUser}/> }/>
-      <Route path="/search/:id" render={(data) => <Home roomKey={data.match.params.id} getRestaurantData={this.getRestaurantData} handleClick={this.handleClick} currentUser={this.state.currentUser} suggestions={this.state.suggestions} restaurants={this.state.restaurants}  voteChange={this.voteChange} deleteSugg={this.deleteSugg}/> }/>
-      <Route path="/signup" render={() => <SignUpForm onSignUp={this.signUpUser} /> }/>
-      <Route path="/room" render={() => <RoomPage loading={this.state.loading} suggestions={this.state.suggestions} /> } />
-       { (localStorage.getItem('jwt') && !this.state.loading) ? <Redirect to= "/room"/> : <Redirect to= "/login"/> }
+        <Headers isLoggedIn={localStorage.getItem('jwt')}/>
+        <Route path="/login" render={() => <LoginForm onLogin={this.loginUser}/> }/>
+        <Route path="/search/:id" render={(data) => <Home roomKey={data.match.params.id} getRestaurantData={this.getRestaurantData} handleClick={this.handleClick} currentUser={this.state.currentUser} suggestions={this.state.suggestions} restaurants={this.state.restaurants}  voteChange={this.voteChange} deleteSugg={this.deleteSugg}/> }/>
+        <Route path="/signup" render={() => <SignUpForm onSignUp={this.signUpUser} /> }/>
+        <Route path="/room" render={() => <RoomPage loading={this.state.loading} suggestions={this.state.suggestions} /> } />
+         { (localStorage.getItem('jwt') && !this.state.loading) ? <Redirect to= "/room"/> : <Redirect to= "/login"/> }
       </div>
     );
   }

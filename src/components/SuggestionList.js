@@ -6,7 +6,7 @@ import { CSSTransitionGroup } from 'react-transition-group'
 class SuggestionList extends React.Component {
 
 	filterSuggestions = () => {
-		return this.props.suggestions.filter(suggestion => suggestion.room_id == this.props.roomKey)
+		return this.props.suggestions.filter(suggestion => suggestion.room_id === this.props.roomKey)
 	}
 
 	render(){

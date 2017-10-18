@@ -4,7 +4,6 @@ import Search from './Search'
 import SuggestionList from './SuggestionList'
 
 const Home = (props) => {
-	console.log(props.roomKey)
 	return (
 			<div className="search-top">
 				<Search getRestaurantData = {props.getRestaurantData}/>

@@ -24,7 +24,6 @@ class Search extends React.Component {
 
 		let location = encodeURIComponent(this.state.address).replace(/%20/g,'+').replace(/%2C/, ',')
 
-		console.log(location)
 		fetch(`http://localhost:3000/api/v1/restaurants/${this.state.searchTerm}/${location}`)
 			.then(resp => resp.json())
 			.then(json => this.props.getRestaurantData(json))

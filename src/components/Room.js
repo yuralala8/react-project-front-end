@@ -7,22 +7,21 @@ export default class Room extends React.Component {
 		super()
 
 		this.state = {
-		
+
 		}
 	}
 
 
 	render(){
 
-		console.log(this.props.roomKey)
 		return (
 			<div>
 
-			<p><Link to={`/search/${this.props.roomKey}`} activeClassName="current">
+			<Link to={`/search/${this.props.roomKey}`}>
 			<div className="room">
 			Room {this.props.roomKey}
 			</div>
-			</Link></p>
+			</Link>
 			</div>
 			)
 	}

@@ -13,24 +13,28 @@ export default class RoomPage extends React.Component {
 }
 
 	getRoomKeys = () => {
-		
-
 		const roomKeys = this.props.suggestions.map(sugg => sugg["room_id"])
-		 return roomKeys.filter((x, i, array) => array.indexOf(x) == i)
+		 return roomKeys.filter((x, i, array) => array.indexOf(x) === i)
 	}
 
 
 
 
 	render(){
-
-
-		return (
-			<div>
-				<Link to={`/search/${Date.now()}`} activeClassName="current" >Create a Room</Link>
-				{this.getRoomKeys().map((roomNum, index) => <Room key={index} roomKey={roomNum}/>)}
-			</div>
-			)
+			if (Array.isArray(this.props.suggestions)) {
+				return (
+					<div>
+						<Link to={`/search/${Date.now()}`}>Create a Room</Link>
+						{this.getRoomKeys().map((roomNum, index) => <Room key={index} roomKey={roomNum}/>)}
+					</div>
+					)
+			} else {
+				return (
+					<div>
+						<p>Loading</p>
+					</div>
+				)
+			}
 		}
 
 }
