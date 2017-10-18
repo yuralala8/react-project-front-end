@@ -23,14 +23,14 @@ export default class RoomPage extends React.Component {
 	render(){
 			if (Array.isArray(this.props.suggestions)) {
 				return (
-					<div>
+					<div className="room-page">
 						<Link to={`/search/${Date.now()}`}>Create a Room</Link>
 						{this.getRoomKeys().map((roomNum, index) => <Room key={index} roomKey={roomNum}/>)}
 					</div>
 					)
 			} else {
 				return (
-					<div>
+					<div className="loader">
 						<p>Loading</p>
 					</div>
 				)

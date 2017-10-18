@@ -366,6 +366,10 @@ p.delete:hover {
   box-sizing: border-box;
 }
 
+.room-page, .loader {
+  margin-top: 50px;
+}
+
 .example-enter {
   opacity: 0.01;
 }
